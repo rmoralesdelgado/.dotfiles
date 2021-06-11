@@ -149,7 +149,7 @@ unset -f poetry_init
 # Enabling oh-my-zsh via .oh-my-zsh.sh:
 omz_init (){
     printf '%s' "[.zshrc][oh-my-zsh] "
-    source ~/.oh-my-zsh.sh &&
+    source ~/.oh-my-zsh-custom/.oh-my-zsh.sh &&
     printf '%s\n' "Successfully initialized." ||
     printf '%s\n' "${RED}Failed to initialize.${NORMAL}"
 }
@@ -190,12 +190,7 @@ SANDY="/Users/rmoralesdelgado/Documents/Omnis/4 Work/04 WIP/sandbox"
 BACKUP_DESTINATION="/Users/rmoralesdelgado/Documents/Omnis/9 Sync/backup"
 
 source backup.sh "$BACKUP_DESTINATION" \
-    "/Users/rmoralesdelgado/.zshrc" \
-    "/Users/rmoralesdelgado/.oh-my-zsh.sh" \
-    "/Users/rmoralesdelgado/.oh-my-zsh/custom" \
-    "/Users/rmoralesdelgado/.bin" \
-    "/Users/rmoralesdelgado/.ssh" \
-#    "/Users/rmoralesdelgado/keys" \
+    "/Users/rmoralesdelgado/.ssh"
 #
 # Creating a backup copy of brew's installed pkgs if older than 30 days:
 if [[ $( find "${BACKUP_DESTINATION}/brew-installed-pkgs.txt" -mtime -10d ) ]];then
