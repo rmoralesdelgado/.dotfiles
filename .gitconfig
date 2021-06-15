@@ -6,3 +6,6 @@
 	editor = code --wait
 [init]
 	defaultBranch = main
+[log]
+	decorate = true
+	abbrevcommit = true

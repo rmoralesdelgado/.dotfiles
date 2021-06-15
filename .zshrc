@@ -174,7 +174,6 @@ chmod +x /Users/rmoralesdelgado/.bin/*
 
 ## ALIASES & SHORTCUTS
 #
-
 # Get current Python version:
 alias py="python -c 'import platform; print(platform.python_version())'"
 # Keep computer alive:
