@@ -72,8 +72,9 @@ ZSH_THEME="refined-custom"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     #git
-    osx
+    macos
     poetry
+    pyenv
     )
 
 source $ZSH/oh-my-zsh.sh
