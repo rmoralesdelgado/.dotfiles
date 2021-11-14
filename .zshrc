@@ -27,6 +27,7 @@ UNDERLINE=$(tput smul)
 
 
 ## INIT
+#
 # Git command to manage dotfiles (as proposed here: https://www.atlassian.com/git/tutorials/dotfiles):
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 ## END OF INIT
@@ -36,6 +37,8 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 #
 # Docs pyenv: https://github.com/pyenv/pyenv
 # Docs pyenv-virtualenv: https://github.com/pyenv/pyenv-virtualenv
+#
+# NOTE: The shims path is now being added in ~/.zprofile
 #
 pyenv_init () {
     printf '%s' "[.zshrc][pyenv] "
@@ -180,6 +183,8 @@ alias py="python -c 'import platform; print(platform.python_version())'"
 alias luxeterna="caffeinate -dis"
 # Shortcut to sandbox:
 SANDY="/Users/rmoralesdelgado/Documents/Omnis/4 Work/04 WIP/sandbox"
+# Open VSCode for sandbox:
+alias code-sandy="code $SANDY"
 ## END OF ALIASES & SHORTCUTS
 
 
