@@ -207,20 +207,14 @@ fi
 # END OF BACKUPS
 
 
+### DEPRECATED
+
+
 ## SSH AGENT
 #
-# Adding the Github private key to ssh-agent:
-if { ssh-add -l | grep "Git[Hh]ub" &> /dev/null ; } ; then
-    echo "[.zshrc][ssh-agent] Github private key for rmoralesdelgado already added."
-else 
-    ssh-add ~/.ssh/github_ecdsa && echo "[.zshrc][ssh-agent] Github private key for rmoralesdelgado successfully added." || echo "[.zshrc][ssh-agent] Failed to add Github private key for rmoralesdelgado."
-fi
+# Moved to ZPROFILE since keys should only be added once.
 #
 # END OF SSH AGENT
-
-
-
-### DEPRECATED
 
 ## CONDA
 #
