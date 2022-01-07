@@ -39,6 +39,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # Docs pyenv-virtualenv: https://github.com/pyenv/pyenv-virtualenv
 #
 # NOTE: The shims path is now being added in ~/.zprofile
+# NOTE: Do not use oh-my-zsh pyenv plugin — it only activates pyenv and pyenv-virtualenv; it's not necessary for autocompletion
 #
 pyenv_init () {
     printf '%s' "[.zshrc][pyenv] "

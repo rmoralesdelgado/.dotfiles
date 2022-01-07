@@ -74,7 +74,7 @@ plugins=(
     #git
     macos
     poetry
-    pyenv
+    #pyenv - Deactivated since it only activates pyenv/pyenv-virtualenv
     )
 
 source $ZSH/oh-my-zsh.sh
