@@ -182,6 +182,8 @@ chmod +x /Users/rmoralesdelgado/.bin/*
 alias py="python -c 'import platform; print(platform.python_version())'"
 # Keep computer alive:
 alias luxeterna="caffeinate -dis"
+# Pyenv: get only pure Python versions
+alias pyenv-pythons="pyenv install --list|grep -E '^\W+\d\.\d+\.\d+$'"
 # Shortcut to sandbox:
 SANDY="/Users/rmoralesdelgado/Documents/Omnis/4 Work/04 WIP/sandbox"
 # Open VSCode for sandbox:
