@@ -74,6 +74,8 @@ plugins=(
     #git
     macos
     poetry
+    docker
+    docker-compose
     #pyenv - Deactivated since it only activates pyenv/pyenv-virtualenv
     )
 
