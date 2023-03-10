@@ -12,3 +12,5 @@
 	abbrevcommit = true
 [pager]
 	log = false
+[alias]
+	nicelog = log --oneline --graph --all --decorate
