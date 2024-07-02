@@ -123,31 +123,6 @@ unset -f pipx_init
 # END OF PIPX
 
 
-## POETRY (AND PLUGINS)
-#
-# Docs poetry: https://python-poetry.org/docs/
-# Source poetry: https://github.com/python-poetry/poetry
-#
-# Initializing poetry if found:
-poetry_init () {
-    printf '%s' "[.zshrc][poetry] "
-    if [[ -d ~/.poetry/bin ]]; then
-        export PATH="$HOME/.poetry/bin:$PATH" &&
-        printf '%s\n' "Successfully added to PATH." ||
-        printf '%s\n' "${RED}Failed to be added to PATH.${NORMAL}"
-    else
-        printf '%s\n' "${RED}'~/.poetry/bin' not found.${NORMAL}"
-    fi
-}
-#
-# Initializing poetry:
-poetry_init
-# Unsetting pipx_init:
-unset -f poetry_init
-#
-# END OF POETRY
-
-
 ## OH-MY-ZSH
 #
 # Enabling oh-my-zsh via .oh-my-zsh.sh:
@@ -227,5 +202,31 @@ fi
 # (Source: https://stackoverflow.com/a/54560785/11905552)
 #
 # END OF CONDA
+
+## POETRY (AND PLUGINS)
+#
+# Deprecation reason: Poetry is now installed via PIPX and there's no need to expose bin files. For more information on installation, run `pipx environment` and `pipx`
+#
+# Docs poetry: https://python-poetry.org/docs/
+# Source poetry: https://github.com/python-poetry/poetry
+#
+# Initializing poetry if found:
+#poetry_init () {
+#    printf '%s' "[.zshrc][poetry] "
+#    if [[ -d ~/.poetry/bin ]]; then
+#        export PATH="$HOME/.poetry/bin:$PATH" &&
+#        printf '%s\n' "Successfully added to PATH." ||
+#        printf '%s\n' "${RED}Failed to be added to PATH.${NORMAL}"
+#    else
+#        printf '%s\n' "${RED}'~/.poetry/bin' not found.${NORMAL}"
+#    fi
+#}
+#
+# Initializing poetry:
+#poetry_init
+# Unsetting pipx_init:
+# unset -f poetry_init
+#
+# END OF POETRY
 
 #### END OF ZSHRC

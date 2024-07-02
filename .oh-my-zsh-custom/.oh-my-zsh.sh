@@ -79,6 +79,9 @@ plugins=(
     #pyenv - Deactivated since it only activates pyenv/pyenv-virtualenv
     )
 
+# Set up env var to send .zcompdump files to cache dir (instead of HOME)
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration

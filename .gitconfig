@@ -14,3 +14,7 @@
 	log = false
 [alias]
 	nicelog = log --oneline --graph --all --decorate
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE

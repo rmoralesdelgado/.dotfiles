@@ -76,5 +76,14 @@ printf '%s' "[.zprofile][pyenv] "
 #
 # END OF PYENV
 
+## ORBSTACK
+#
+# Automatically added by Orbstack but moved a few lines up by RMD
+# Added by OrbStack: command-line tools and integration
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+#
+# END OF ORBSTACK
+
 
 #### END OF ZPROFILE
+
