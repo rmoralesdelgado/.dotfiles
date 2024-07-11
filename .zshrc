@@ -169,7 +169,7 @@ alias code-sandy="code $SANDY"
 ## BACKUPS
 #
 # Function to automatically backup certain config files:
-BACKUP_DESTINATION="/Users/rmoralesdelgado/Documents/Omnis/9 Sync/backup"
+BACKUP_DESTINATION="/Users/rmoralesdelgado/Documents/Omnis/9_extra_sync/backup"
 
 source backup.sh "$BACKUP_DESTINATION" \
     "/Users/rmoralesdelgado/.ssh"
@@ -183,6 +183,15 @@ else
 fi
 #
 # END OF BACKUPS
+
+
+## STARSHIP (custom prompt)
+#
+# NOTE: Needs to be at the end of ZSHRC
+# Initialize Starship
+eval "$(starship init zsh)"
+#
+# END OF STARSHIP
 
 
 ### DEPRECATED
