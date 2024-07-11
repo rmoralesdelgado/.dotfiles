@@ -189,7 +189,7 @@ fi
 #
 # NOTE: Needs to be at the end of ZSHRC
 # Initialize Starship
-export STARSHIP_CONFIG="$HOME/.config/starship.toml"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init zsh)"
 #
 # END OF STARSHIP
