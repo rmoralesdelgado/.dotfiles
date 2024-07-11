@@ -134,7 +134,7 @@ omz_init (){
 }
 #
 # Initializing oh-my-zsh
-omz_init
+# omz_init
 # Unsetting omz_init
 unset -f omz_init
 #
@@ -189,6 +189,7 @@ fi
 #
 # NOTE: Needs to be at the end of ZSHRC
 # Initialize Starship
+export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 eval "$(starship init zsh)"
 #
 # END OF STARSHIP
