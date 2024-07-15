@@ -4,7 +4,7 @@
 #### Made by Raul Morales Delgado
 
 
-### ACTIVE
+#### STYLE 
 
 ## FORMATTING
 #
@@ -25,6 +25,11 @@ NORMAL=$(tput sgr0)
 REVERSE=$(tput smso)
 UNDERLINE=$(tput smul)
 
+#### END OF STYLE
+
+
+
+#### VCS (for dotfiles)
 
 ## INIT
 #
@@ -32,6 +37,12 @@ UNDERLINE=$(tput smul)
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 ## END OF INIT
 
+
+#### END OF VCS
+
+
+
+#### ENVIRONMENT
 
 ## LOCAL EXPORTS
 #
@@ -73,6 +84,22 @@ unset -f local_exports
 #
 # END OF LOCAL EXPORTS
 
+
+## ALIASES & SHORTCUTS
+#
+# Get current Python version:
+alias py="python -c 'import platform; print(platform.python_version())'"
+# Keep computer alive:
+alias luxeterna="caffeinate -dis"
+# Pyenv: get only pure Python versions
+alias pyenv-pythons="pyenv install --list|grep -E '^\W+\d\.\d+\.\d+$'"
+## END OF ALIASES & SHORTCUTS
+
+#### END OF ENVIRONMENT
+
+
+
+#### APPLICATIONS
 
 ## PYENV (AND PLUGINS)
 #
@@ -148,35 +175,6 @@ source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 # END OF ORBSTACK
 
 
-## OH-MY-ZSH
-#
-# Enabling oh-my-zsh via .oh-my-zsh.sh:
-omz_init (){
-    printf '%s' "[.zshrc][oh-my-zsh] "
-    source ~/.oh-my-zsh-custom/.oh-my-zsh.sh &&
-    printf '%s\n' "Successfully initialized." ||
-    printf '%s\n' "${RED}Failed to initialize.${NORMAL}"
-}
-#
-# Initializing oh-my-zsh
-omz_init
-# Unsetting omz_init
-unset -f omz_init
-#
-# END OF OH-MY-ZSH
-
-
-## ALIASES & SHORTCUTS
-#
-# Get current Python version:
-alias py="python -c 'import platform; print(platform.python_version())'"
-# Keep computer alive:
-alias luxeterna="caffeinate -dis"
-# Pyenv: get only pure Python versions
-alias pyenv-pythons="pyenv install --list|grep -E '^\W+\d\.\d+\.\d+$'"
-## END OF ALIASES & SHORTCUTS
-
-
 ## BACKUPS
 #
 # Function to automatically backup certain config files:
@@ -194,6 +192,41 @@ else
 fi
 #
 # END OF BACKUPS
+
+
+
+#### SHELL & PROMPT
+
+## ZSH-COMPLETIONS
+#
+# Add brew-installed zsh-completions
+#
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    # These (below) are not needed since they are ran via oh-my-zsh:
+    
+    # autoload -Uz compinit
+    # compinit
+fi
+
+
+## OH-MY-ZSH
+#
+# Enabling oh-my-zsh via .oh-my-zsh.sh:
+omz_init (){
+    printf '%s' "[.zshrc][oh-my-zsh] "
+    source ~/.oh-my-zsh-custom/.oh-my-zsh.sh &&
+    printf '%s\n' "Successfully initialized." ||
+    printf '%s\n' "${RED}Failed to initialize.${NORMAL}"
+}
+#
+# Initializing oh-my-zsh
+omz_init
+# Unsetting omz_init
+unset -f omz_init
+#
+# END OF OH-MY-ZSH
 
 
 ## STARSHIP (custom prompt)
