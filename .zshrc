@@ -33,6 +33,47 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 ## END OF INIT
 
 
+## LOCAL EXPORTS
+#
+# Add local directories with binaries to PATH and set contents as executable
+#
+local_exports () {
+    printf '%s' "[.zshrc][local_exports] "
+    local DIRS=('.local/bin' '.bin') # Add more here
+    local SUCCESSES=()
+    local FAILS=()
+    local NOT_FOUNDS=()
+    for i in $DIRS; do
+        local ABS_PATH="$HOME/${i}"
+        if [[ -d $ABS_PATH ]]; then
+            export PATH="$ABS_PATH:$PATH" && 
+            chmod +x $ABS_PATH/* &&
+            SUCCESSES+=${i} ||
+            FAILS+=${i}
+        else
+            NOT_FOUNDS+=${i}
+        fi;
+    done;
+    if (( ${#SUCCESSES} > 0 )); then
+        printf '%s' "Successfully added $(printf '[%s] ' "${SUCCESSES[@]}")to PATH."
+    fi
+    if (( ${#FAILS} > 0 )); then
+        printf '%s' "${RED} Failed to add $(printf '[%s] ' "${FAILS[@]}")to PATH.${NORMAL}"
+    fi
+    if (( ${#NOT_FOUNDS} > 0 )); then
+        printf '%s' "${RED} $(printf '[%s] ' "${NOT_FOUNDS[@]}")not found.${NORMAL}"
+    fi
+    printf '%s\n' "";
+}
+#
+# Run function:
+local_exports
+# Unsetting function:
+unset -f local_exports
+#
+# END OF LOCAL EXPORTS
+
+
 ## PYENV (AND PLUGINS)
 #
 # Docs pyenv: https://github.com/pyenv/pyenv
@@ -98,29 +139,13 @@ pyenv_ve_init --manual
 # END OF PYENV
 
 
-## PIPX (AND PLUGINS)
+## ORBSTACK
 #
-# Docs poetry: https://python-poetry.org/docs/
-# Source poetry: https://github.com/python-poetry/poetry
+# (Moved from ZPROFILE) Initialize Orbstack (i.e., add binaries to PATH and FPATH)
+# Added by OrbStack: command-line tools and integration
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 #
-# Initializing pipx if found:
-pipx_init () {
-    printf '%s' "[.zshrc][pipx] "
-    if [[ -d ~/.local/bin ]]; then
-        export PATH="$HOME/.local/bin:$PATH" && 
-        printf '%s\n' "Successfully added to PATH." ||
-        printf '%s\n' "${RED} Failed to be added to PATH.${NORMAL}"
-    else
-        printf '%s\n' "${RED}'~/.local/bin' not found.${NORMAL}"
-    fi
-}
-#
-# Initializing pipx:
-pipx_init
-# Unsetting pipx_init:
-unset -f pipx_init
-#
-# END OF PIPX
+# END OF ORBSTACK
 
 
 ## OH-MY-ZSH
@@ -134,21 +159,11 @@ omz_init (){
 }
 #
 # Initializing oh-my-zsh
-# omz_init
+omz_init
 # Unsetting omz_init
 unset -f omz_init
 #
 # END OF OH-MY-ZSH
-
-
-## PATH APPENDS AND EXECUTABLES ENABLING
-#
-# Adding path for bin folder in Documents to the PATH:
-export PATH="$PATH:/Users/rmoralesdelgado/.bin"
-chmod +x /Users/rmoralesdelgado/.bin/*
-#
-# Adding path for keys folder in Documents to the PATH
-# export PATH="$PATH:/Users/rmoralesdelgado/keys"
 
 
 ## ALIASES & SHORTCUTS
@@ -159,10 +174,6 @@ alias py="python -c 'import platform; print(platform.python_version())'"
 alias luxeterna="caffeinate -dis"
 # Pyenv: get only pure Python versions
 alias pyenv-pythons="pyenv install --list|grep -E '^\W+\d\.\d+\.\d+$'"
-# Shortcut to sandbox:
-SANDY="/Users/rmoralesdelgado/Documents/Omnis/4 Work/04 WIP/sandbox"
-# Open VSCode for sandbox:
-alias code-sandy="code $SANDY"
 ## END OF ALIASES & SHORTCUTS
 
 
@@ -196,8 +207,7 @@ eval "$(starship init zsh)"
 
 
 ### DEPRECATED
-
-
+#
 ## SSH AGENT
 #
 # Moved to ZPROFILE since keys should only be added once.
