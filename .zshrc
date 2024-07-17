@@ -93,6 +93,11 @@ alias py="python -c 'import platform; print(platform.python_version())'"
 alias luxeterna="caffeinate -dis"
 # Pyenv: get only pure Python versions
 alias pyenv-pythons="pyenv install --list|grep -E '^\W+\d\.\d+\.\d+$'"
+# Git + FZF
+alias gcb="git branch | fzf --preview 'git show --color=always {-1}' \
+                            --bind 'enter:become(git checkout {-1})' \
+                            --height 40% --layout reverse"
+#
 ## END OF ALIASES & SHORTCUTS
 
 #### END OF ENVIRONMENT
@@ -175,6 +180,26 @@ source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 # END OF ORBSTACK
 
 
+## FZF (FuZzy Finder)
+#
+fzf_init () {
+    printf '%s' "[.zshrc][fzf] "
+    if command -v fzf &> /dev/null; then
+        source <(fzf --zsh) &&
+        bindkey "ç" fzf-cd-widget && # To let the binding work; originally alt+C -> ç
+        printf '%s\n' "Successfully initialized." ||
+        printf '%s\n' "${RED}Failed to initialize.${NORMAL}"
+    else
+        printf '%s\n' "${RED}Command not found.${NORMAL}"
+    fi
+}
+#
+# Initializing FZF:
+fzf_init
+# Unsetting fzf_init:
+unset -f fzf_init
+
+
 ## BACKUPS
 #
 # Function to automatically backup certain config files:
@@ -192,6 +217,8 @@ else
 fi
 #
 # END OF BACKUPS
+
+#### END OF APPLICATIONS
 
 
 
