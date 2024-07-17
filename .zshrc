@@ -182,11 +182,23 @@ source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 ## FZF (FuZzy Finder)
 #
+# Docs at https://junegunn.github.io/fzf/; installed via homebrew
+#
 fzf_init () {
     printf '%s' "[.zshrc][fzf] "
     if command -v fzf &> /dev/null; then
         source <(fzf --zsh) &&
-        bindkey "ç" fzf-cd-widget && # To let the binding work; originally alt+C -> ç
+        # Fix alt + C binding; originally -> ç
+        bindkey "ç" fzf-cd-widget && 
+        # Preview file content using bat
+        export FZF_CTRL_T_OPTS="
+            --walker-skip .git,node_modules,target
+            --preview 'bat -n --color=always {}'
+            --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+        # Print tree structure in the preview window
+        export FZF_ALT_C_OPTS="
+        --walker-skip .git,node_modules,target
+        --preview 'tree -C {}'"
         printf '%s\n' "Successfully initialized." ||
         printf '%s\n' "${RED}Failed to initialize.${NORMAL}"
     else
