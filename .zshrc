@@ -44,6 +44,26 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 #### ENVIRONMENT
 
+## OH-MY-ZSH
+#
+# OMZ needs to be initialized first since it runs 'autoload -Uz compinit', which
+# enables several autocompletion function used by apps below.
+#
+# Enabling oh-my-zsh via .oh-my-zsh.sh:
+omz_init (){
+    printf '%s' "[.zshrc][oh-my-zsh] "
+    source ~/.oh-my-zsh-custom/.oh-my-zsh.sh &&
+    printf '%s\n' "Successfully initialized." ||
+    printf '%s\n' "${RED}Failed to initialize.${NORMAL}"
+}
+#
+# Initializing oh-my-zsh
+omz_init
+# Unsetting omz_init
+unset -f omz_init
+#
+# END OF OH-MY-ZSH
+
 ## LOCAL EXPORTS
 #
 # Add local directories with binaries to PATH and set contents as executable
@@ -175,7 +195,23 @@ pyenv_ve_init --manual
 #
 # (Moved from ZPROFILE) Initialize Orbstack (i.e., add binaries to PATH and FPATH)
 # Added by OrbStack: command-line tools and integration
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+# Modified by RMD
+orb_init() {
+    printf '%s' "[.zshrc][orb] "
+    if [[ -f ~/.orbstack/shell/init.zsh ]]; then
+        source ~/.orbstack/shell/init.zsh 2>/dev/null &&
+        eval "$(orbctl completion zsh)" && compdef _orb orb && compdef _orb orbctl && 
+        printf '%s\n' "Successfully initialized." ||
+        printf '%s\n' "${RED}Failed to initialize.${NORMAL}"
+    else
+        printf '%s\n' "${RED}Command not found.${NORMAL}"
+    fi
+}
+#
+# Initializing Orb:
+orb_init
+# Unsetting orb_init:
+unset -f orb_init
 #
 # END OF ORBSTACK
 
@@ -236,9 +272,12 @@ fi
 
 #### SHELL & PROMPT
 
-## ZSH-COMPLETIONS
+## ADDITIONAL ZSH-COMPLETIONS
 #
-# Add brew-installed zsh-completions
+# Several completions were added by initializing apps above. These are additional ones.
+#
+#
+# Add brew-installed zsh-completions.
 #
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
@@ -248,24 +287,8 @@ if type brew &>/dev/null; then
     # autoload -Uz compinit
     # compinit
 fi
-
-
-## OH-MY-ZSH
 #
-# Enabling oh-my-zsh via .oh-my-zsh.sh:
-omz_init (){
-    printf '%s' "[.zshrc][oh-my-zsh] "
-    source ~/.oh-my-zsh-custom/.oh-my-zsh.sh &&
-    printf '%s\n' "Successfully initialized." ||
-    printf '%s\n' "${RED}Failed to initialize.${NORMAL}"
-}
-#
-# Initializing oh-my-zsh
-omz_init
-# Unsetting omz_init
-unset -f omz_init
-#
-# END OF OH-MY-ZSH
+# END OF COMPLETIONS
 
 
 ## STARSHIP (custom prompt)
