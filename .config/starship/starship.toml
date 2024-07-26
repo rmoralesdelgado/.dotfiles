@@ -61,6 +61,19 @@ color_prompt_success = '#73fffe'
 color_prompt_error = '#cc241d'
 color_purple = '#b16286'
 
+[palettes.cyberpunk_main]
+color_bg0 = '#ff124f'
+color_bg1 = '#d1f7ff'
+color_bg2 = '#05d9e8'
+color_bg3 = '#005678'
+color_bg4 = '#120458'
+color_bg5 = '#01012b'
+color_fg0 = '#f5f0e1'
+color_fg1 = '#fbf1c7'
+color_prompt_success = '#73fffe'
+color_prompt_error = '#cc241d'
+color_purple = '#b16286'
+
 [os]
 disabled = false
 style = "bg:color_bg0 fg:color_fg0"
