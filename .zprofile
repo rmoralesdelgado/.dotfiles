@@ -79,4 +79,3 @@ printf '%s' "[.zprofile][pyenv] "
 
 
 #### END OF ZPROFILE
-
