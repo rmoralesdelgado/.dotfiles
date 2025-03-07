@@ -61,21 +61,30 @@ unset github
 # END OF SSH AGENT
 
 
-## PYENV
-#
-# This section is used to add the shims path to $PATH
-# This is necessary, as explained here https://github.com/pyenv/pyenv/issues/1906
-#
-printf '%s' "[.zprofile][pyenv] "
-    if command -v pyenv 1>/dev/null 2>&1; then
-        eval "$(pyenv init --path)" &&
-        printf '%s\n' "Shims path added to PATH." ||
-        printf '%s\n' "${RED}Failed to add shims path to PATH.${NORMAL}"
+## HOMEBREW
+
+# Load Homebrew's env vars and binaries to PATH and Zsh completions to FPATH
+# Docs: https://docs.brew.sh/Homebrew-on-MacOS
+# This assumes Homebrew is already installed
+# TODO: Update script to install Homebrew if not installed
+
+brew_init () {
+    printf '%s' "[.zprofile][brew] "
+    if command -v brew &>/dev/null; then
+        eval "$(/usr/local/bin/brew shellenv)" &&
+        printf '%s\n' "Successfully initialized." ||
+        printf '%s\n' "${RED}Failed to initialize.${NORMAL}"
     else
         printf '%s\n' "${RED}Command not found.${NORMAL}"
     fi
-#
-# END OF PYENV
+}
+
+brew_init
+
+# Unset function
+unset -f brew_init
+
+## END OF HOMEBREW
 
 
 #### END OF ZPROFILE

@@ -33,7 +33,21 @@ $line_break$character"""
 # - It also allows to add more palettes without modifying specific color name variables
 
 
-palette = 'cyberpunk_sunset'
+palette = 'dracula'  
+
+[palettes.dracula]
+# Color schema from https://github.com/dracula/starship/blob/master/starship.toml
+color_bg0 = '#8be9fd'
+color_bg1 = '#50fa7b'
+color_bg2 = '#ffb86c'
+color_bg3 = '#ff79c6'
+color_bg4 = '#bd93f9'
+color_bg5 = '#f1fa8c'
+color_fg0 = '#282a36'
+color_fg1 = '#44475a'
+color_prompt_success = '#50fa7b'
+color_prompt_error = '#ff5555'
+color_purple = '#b16286'
 
 [palettes.gruvbox_dark]
 color_bg0 = '#d65d0e'
