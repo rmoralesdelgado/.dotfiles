@@ -192,24 +192,14 @@ unset -f local_dir_exports
 
 ## END OF LOCAL EXPORTS
 
-
 ## ALIASES & SHORTCUTS
-
-# Alias for Git command to manage dotfiles 
-# (as proposed here: https://www.atlassian.com/git/tutorials/dotfiles)
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-# Keep computer alive
-alias luxeterna="caffeinate -dis"
-# Get current Python version
-alias py="python -c 'import platform; print(platform.python_version())'"
-# Pyenv: get only pure Python versions
-alias pyenv-pythons="pyenv install --list|grep -E '^\W+\d\.\d+\.\d+$'"
-# Git + FZF
-alias gcb="git branch | fzf --preview 'git show --color=always {-1}' \
-                            --bind 'enter:become(git checkout {-1})' \
-                            --height 40% --layout reverse"
+# Source file with consolidated aliases 
+if [[ -f "${CONFIG_DIR}/aliases.zsh" ]]; then
+    source "${CONFIG_DIR}/aliases.zsh"
+fi
 
 ## END OF ALIASES & SHORTCUTS
+
 
 #### END OF ENVIRONMENT
 
